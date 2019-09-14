@@ -1,12 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid bg-warning rounded-lg mb-4">
+            <div class="container text-center text-dark">
+                <h1 class="display-4">RELIABLE TRAIN SERVICES</h1>
+                <p class="lead">Occasionally on time</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container mb-4">
+        <div class="card border border-warning">
+            <div class="card-header bg-warning text-dark">
+                <b>Current Train Schedule</b>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency (min)</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="regionTrainSchedule">
+                            <!-- generate rows here -->
+                            <!-- <tr class="border-top">
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td><button
+                                        class="btn btn-secondary d-flex align-items-center justify-content-center"><i
+                                            class="material-icons">edit</i></button></td>
+                                <td><button class="btn btn-danger d-flex align-items-center justify-content-center"><i
+                                            class="material-icons">delete</i></button></td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container mb-4">
+        <div class="card border border-warning">
+            <div class="card-header bg-warning text-dark">
+                <b>Add Train</b>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="addTrainInputName">*Train Name</label>
+                        <input type="text" class="form-control" id="addTrainInputName" placeholder="Enter the train name">
+                        <small id="addTrainMessageName" class="form-text text-muted"
+                            style="height: 1rem; color: red !important;"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="addTrainInputDestination">*Destination</label>
+                        <input type="text" class="form-control" id="addTrainInputDestination" placeholder="Enter the train destination">
+                        <small id="addTrainMessageDestination" class="form-text text-muted"
+                            style="height: 1rem; color: red !important;"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="addTrainInputStartTime">*First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="addTrainInputStartTime" placeholder="Enter 05:00 for 5:00 AM">
+                        <small id="addTrainMessageStartTime" class="form-text text-muted"
+                            style="height: 1rem; color: red !important;"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="addTrainInputFrequency">*Frequency (min)</label>
+                        <input type="text" class="form-control" id="addTrainInputFrequency" placeholder="Enter 50 for 50 minutes">
+                        <small id="addTrainMessageFrequency" class="form-text text-muted"
+                            style="height: 1rem; color: red !important;"></small>
+                    </div>
+
+                    <button id="addTrainSubmit" type="submit" class="btn btn-warning">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+
+    <script src="./assets/javascript/app.js"></script>
 </body>
+
 </html>
