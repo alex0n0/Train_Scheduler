@@ -135,7 +135,7 @@ function calculateNextTrain(currentTimeMillis, waitTimeMins) {
 function returnFormattedTime(date) {
     let hours = date.getHours();
     let mins = date.getMinutes()
-    return ((hours < 10 || hours - 12 < 10) ? '0': '') + (hours < 12 ? hours : hours - 12) + ':' + mins + (hours < 12 ? ' AM' : ' PM');
+    return ((hours < 10 || hours - 12 < 10) ? '0': '') + (hours < 12 ? hours : hours - 12) + ':' + (mins < 10 ? '0': '') + mins + (hours < 12 ? ' AM' : ' PM');
 }
 
 
