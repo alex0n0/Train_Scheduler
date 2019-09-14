@@ -58,6 +58,7 @@ function renderTrainTable() {
     $('#regionTrainSchedule').empty();
 
     let currentDate = new Date();
+    $('#time').text(returnFormattedTime(currentDate));
     
     for (let i = 0; i < arrTrains.length; i++) {
         let tableRow = $('<tr>');
@@ -106,21 +107,28 @@ function renderTrainTable() {
 function calculateMinutesAway(trainStartTimeMilitaryformat, currentDate, frequencyMins) {
     let time = trainStartTimeMilitaryformat.split(':');
     let startTimeInMins = parseInt(time[0]) * 60 + parseInt(time[1]);
-    console.log(time[0], time[1], '| min:', startTimeInMins);
     let currentTimeInMins = currentDate.getHours() * 60 + currentDate.getMinutes();
-    console.log(currentDate.getHours(), currentDate.getMinutes(), '| min:', currentTimeInMins);
     let waitingTime = frequencyMins - ((currentTimeInMins - startTimeInMins) % frequencyMins);
     return waitingTime;
 }
 
 function calculateNextTrain(currentTimeMillis, waitTimeMins) {
-    return '16:15'
+    let newDate = new Date(currentTimeMillis.valueOf() + Number(waitTimeMins) * 60 * 1000);
+    return returnFormattedTime(newDate);
+}
+function returnFormattedTime(date) {
+    let hours = date.getHours();
+    let mins = date.getMinutes()
+    return ((hours < 10 || hours - 12 < 10) ? '0': '') + (hours < 12 ? hours : hours - 12) + ':' + mins + (hours < 12 ? ' AM' : ' PM');
 }
 
 
 
 
-
+setInterval(function() {
+    renderTrainTable();
+    console.log('refresh');
+}, 15000);
 
 
 
