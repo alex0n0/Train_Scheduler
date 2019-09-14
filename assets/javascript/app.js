@@ -89,8 +89,24 @@ function renderTrainTable() {
 
         $('#regionTrainSchedule').append(tableRow);
     }
+    let isEditing = false;
     $('.buttonUpdate').on('click', function () {
-        console.log('to update', $(this).attr('data-id'));
+        isEditing = !isEditing;
+        let form = $('<form style="opacity: 0.3;"><div class="form-group"><label>*Train Name</label><input type="text" class="form-control" placeholder="Enter the train name"><small class="form-text text-muted" style="height: 1rem; color: red !important;"></small></div>' + 
+        '<div class="form-group"><label>*Destination</label><input type="text" class="form-control" placeholder="Enter the train destination" value="><small class="form-text text-muted"style="height: 1rem; color: red !important;"></small></div>' +
+        '<div class="form-group"><label>*First Train Time (HH:mm - military time)</label><input type="text" class="form-control" placeholder="Enter 05:00 for 5:00 AM"><small class="form-text text-muted"style="height: 1rem; color: red !important;"></small></div>' + 
+        '<div class="form-group"><label>*Frequency (min)</label><input type="text" class="form-control" placeholder="Enter 50 for 50 minutes"><small class="form-text text-muted"style="height: 1rem; color: red !important;"></small></div></form>');
+
+        if (isEditing) {
+            $(this).parent().parent().addClass('bg-success');
+            $(this).find('i').text('save');
+
+            $(this).parent().parent().parent().parent().parent().append(form);
+        } else {
+            $(this).find('i').text('edit');
+            $(this).parent().parent().removeClass('bg-success');
+            $(this).parent().parent().parent().parent().parent().find('form').remove();
+        }
     });
 
     $('.buttonDelete').on('click', function () {
@@ -145,10 +161,10 @@ $('#addTrainSubmit').on('click', handlerAddTrain);
 function handlerAddTrain(e) {
     e.preventDefault();
 
-    let trainNameString = $('#addTrainInputName').val().trim();
-    let trainDestinationString = $('#addTrainInputDestination').val().trim();
-    let trainStartTimeMillis = $('#addTrainInputStartTime').val().trim();
-    let trainFrequencyMins = $('#addTrainInputFrequency').val().trim();
+    let trainNameString;
+    let trainDestinationString;
+    let trainStartTimeMilitaryformat;
+    let trainFrequencyMins;
 
     let addTrainInputName = $('#addTrainInputName').val().trim();
     let addTrainInputDestination = $('#addTrainInputDestination').val().trim();
@@ -237,11 +253,3 @@ var setWithMerge = cityRef.set({
     capital: true
 }, { merge: true });
 */
-
-
-
-
-
-
-
-//0999 problem
